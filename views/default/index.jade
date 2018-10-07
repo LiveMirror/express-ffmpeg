@@ -5,6 +5,23 @@ block header
   meta(name="description",content="#{portal.description}")
 block content
   .layui-container.mt-20
+    if pushmovies.length>0
+      .card
+        fieldset.layui-elem-field.layui-field-title
+          legend 推荐
+          .layui-field-box
+            .layui-row.layui-col-space10
+              each pushmovie in pushmovies
+                .layui-col-md4
+                  .push-box
+                    .push-img
+                      a(href="/movie/#{pushmovie.movieid._id}")
+                        if pushmovie.movieid.poster
+                          img(src="#{pushmovie.movieid.poster}")
+                        else
+                          img(src="/videos/#{pushmovie.movieid._id}/1.jpg")
+                    a(href="/movie/#{pushmovie.movieid._id}")
+                      h2.pushtitle #{pushmovie.movieid.originalname}
     .layui-row.layui-col-space10.index-lists
       each list in lists
         if list.images

@@ -3,6 +3,7 @@ var Category = require('../models/category');
 var Portal = require('../models/portal');
 var Image = require('../models/image');
 var Article = require('../models/article');
+var Push = require('../models/push');
 var moment = require('moment');
 var fs = require('fs');
 var sharp = require('sharp');
@@ -20,6 +21,18 @@ exports.index = function(req, res) {
                         console.log(err);
                     }
                     callback(null,movies);
+                })
+        },
+        pushmovies: function(callback) {
+            Push.find()
+                .sort('-createAt')
+                .limit(3)
+                .populate('movieid')
+                .exec(function(err,pushmovies) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    callback(null,pushmovies);
                 })
         },
         images: function(callback) {
@@ -51,9 +64,11 @@ exports.index = function(req, res) {
         var lists = [];
         lists = lists.concat(results.movies,results.images,results.articles);
         lists = _.shuffle(lists);
+        console.log(results.pushmovies);
         res.render(req.portal.theme+'/index', {
             portal: req.portal,
             lists: lists,
+            pushmovies: results.pushmovies,
             user: req.session.leveluser
         })
     });

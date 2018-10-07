@@ -9,6 +9,7 @@ var Portal = require("../models/portal");
 var Player = require("../models/player");
 var User = require("../models/user");
 var Card = require("../models/card");
+var Push = require("../models/push");
 var fs = require('fs');
 var _ = require('underscore');
 var moment = require('moment');
@@ -1341,6 +1342,36 @@ exports.selectedcategory = function(req, res) {
     res.json({
         success: 1
     });
+}
+exports.pushtoindex = function(req, res) {
+    var id = req.body.id;
+    var pushobj = {
+        movieid: id
+    }
+    Push.findOne({movieid:id})
+        .exec(function(err,push){
+            if(err) {
+                console.log(err);
+            }
+            if(!push) {
+                var newpush = new Push(pushobj);
+                newpush.save(function(err) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    res.json({success:1});
+                })
+            } else {
+                push.createAt = Date.now();
+                push.save(function(err){
+                    if(err) {
+                        console.log(err);
+                    }
+                    res.json({success:1});
+                })
+            }
+        })
+    
 }
 exports.cuthead = function(req, res) {
     var ids = [];

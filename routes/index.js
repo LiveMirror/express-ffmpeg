@@ -121,6 +121,7 @@ module.exports = function(app) {
     app.post("/admin/setting/basic", checkLogin, Admincontroller.postsetting);
     app.post("/admin/setting/fenfa", checkLogin, Admincontroller.postfenfa);
     app.post("/ruku", checkLogin, Admincontroller.ruku);
+    app.post("/pushtoindex",checkLogin, Admincontroller.pushtoindex);
     app.get("/playmagnet", Admincontroller.playmagnet);
     app.post("/addcategory", checkLogin, Admincontroller.addcategory);
     app.get("/admin/categories", checkLogin, Admincontroller.getCategories);

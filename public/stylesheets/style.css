@@ -469,6 +469,29 @@ a.badge:hover{
 .selectedhead{
   display:none;
 }
+.pushtitle {
+  height: 42px;
+  overflow:hidden;
+  margin-top: 10px;
+  font-size: 16px;
+  word-break: break-all;
+  text-align: center;
+}
+
+.pushbox {
+  height:255px;
+  overflow:hidden;
+}
+.push-img{
+  height:200px;
+  overflow: hidden;
+}
+.index-lists{
+  margin-top:20px;
+}
+.push-img img{
+  min-height:100%;
+}
 @media (min-width: 768px) {
   .col-md-4 {
   -ms-flex: 0 0 33.333333%;

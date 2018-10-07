@@ -93,6 +93,21 @@ layui.use(['jquery','form','colorpicker','element','layer','upload'], function()
         });
       }
     });
+    $(".pushtoindex").click(function(e) {
+      var id = $(e.target).data('id');
+      $.ajax({
+        type: "post",
+        url: "/pushtoindex",
+        data: {id: id},
+        dataType: "JSON",
+        success: function (response) {
+          if(response.success==1) {
+            location.reload();
+            layer.msg('推荐到首页成功');
+          }
+        }
+      });
+    });
     $(".btn-deleteall").click(function(e) {
       layer.confirm('是否确定删除所选视频？',{
         btn: ['确定']
