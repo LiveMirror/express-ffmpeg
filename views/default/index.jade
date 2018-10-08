@@ -5,7 +5,7 @@ block header
   meta(name="description",content="#{portal.description}")
 block content
   .layui-container.mt-20
-    if pushmovies.length>0
+    if pushmovies&&pushmovies.length>0
       .card
         fieldset.layui-elem-field.layui-field-title
           legend 推荐

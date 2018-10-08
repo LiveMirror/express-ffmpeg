@@ -142,6 +142,8 @@ body.gray {
   margin-top:20px;
 }
 .tag{
+  width:auto;
+  height:auto;
   border: 1px solid #f0f0f0;
   border-radius: 4px;
   padding: 3px 10px;
@@ -470,7 +472,7 @@ a.badge:hover{
   display:none;
 }
 .pushtitle {
-  height: 42px;
+  height: 44px;
   overflow:hidden;
   margin-top: 10px;
   font-size: 16px;
@@ -491,6 +493,24 @@ a.badge:hover{
 }
 .push-img img{
   min-height:100%;
+  border-radius: 12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+}
+.tabs-container{
+  background-color:#fff;
+  height:38px;
+  box-shadow: 0 6px 10px -4px rgba(0, 0, 0, .15);
+}
+#swiper-container{
+  height:38px;
+  width:100%;
+  overflow:hidden;
+}
+.swiper-wrapper{
+  height:38px;
 }
 @media (min-width: 768px) {
   .col-md-4 {
