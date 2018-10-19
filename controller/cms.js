@@ -3,7 +3,9 @@ var Category = require('../models/category');
 var Portal = require('../models/portal');
 var Image = require('../models/image');
 var Article = require('../models/article');
+var Setting = require('../models/setting');
 var Push = require('../models/push');
+var cache = require('../helper/rediscache');
 var moment = require('moment');
 var fs = require('fs');
 var sharp = require('sharp');
@@ -64,7 +66,6 @@ exports.index = function(req, res) {
         var lists = [];
         lists = lists.concat(results.movies,results.images,results.articles);
         lists = _.shuffle(lists);
-        console.log(results.pushmovies);
         res.render(req.portal.theme+'/index', {
             portal: req.portal,
             lists: lists,
@@ -503,6 +504,235 @@ exports.posteditarticle = function(req, res) {
                 res.redirect("/cms/articles");
             })
         })
+}
+exports.apigetindex = function(req, res) {
+    var perPage = req.query.counts>0?req.query.counts*1:20;
+    async.parallel({
+        movies: function(callback) {
+            Movie.find({status: 'finished'})
+                .sort('-createAt')
+                .limit(perPage)
+                .exec(function(err, movies) {
+                    if(err) {
+                        callback(err, null);
+                    }
+                    callback(null,movies);
+                })
+        },
+        pushmovies: function(callback) {
+            Push.find()
+                .sort('-createAt')
+                .limit(3)
+                .populate('movieid')
+                .exec(function(err,pushmovies) {
+                    if(err) {
+                        callback(err, null);
+                    }
+                    callback(null,pushmovies);
+                })
+        }
+    },function(err, results) {
+        if(err) {
+            return res.json({
+                error: err
+            });
+        }
+        res.json({
+            movies: results.movies,
+            pushmovies: results.pushmovies
+        })
+    })
+}
+exports.apigetmovies = function(req, res) {
+    var page = req.query.page > 0 ? req.query.page : 1;
+    var perPage = req.query.counts>0?req.query.counts*1:20;
+    var sort = req.query.sort?req.query.sort:"newtime";
+    var sortquery = '';
+    if(sort=="hot") {
+        sortquery = '-count';
+    } else if (sort == 'nothot') {
+        sortquery = 'count';
+    } else if (sort == 'newtime') {
+        sortquery = '-createAt';
+    } else if (sort == 'oldtime') {
+        sortquery = 'createAt';
+    }
+    Movie.find({status: 'finished'})
+        .sort(sortquery)
+        .limit(perPage)
+        .skip(perPage * (page-1))
+        .exec(function(err, movies) {
+            if(err) {
+                console.log(err);
+            }
+            res.json({
+                movies: movies
+            })
+        })
+}
+exports.apigetplay = function(req, res) {
+    var perPage = req.query.counts>0?req.query.counts*1:20;
+    var id = req.query.id;
+    async.parallel({
+        movies: function(callback) {
+            Movie.find({status: 'finished'})
+                .sort('-count')
+                .limit(perPage)
+                .exec(function(err, movies) {
+                    if(err) {
+                        callback(err, null);
+                    }
+                    callback(null,movies);
+                })
+        },
+        movie: function(callback) {
+            Movie.findOne({_id: id})
+                .exec(function(err, movie) {
+                    if(err) {
+                        callback(err,null);
+                    }
+                    callback(null,movie);
+                })
+        }
+    },function(err, results) {
+        if(err) {
+            return res.json({
+                error: err
+            });
+        }
+        var m3u8 = "/videos/"+id+"/index.m3u8";
+        res.json({
+            movies: results.movies,
+            m3u8: m3u8
+        })
+    })
+}
+exports.apigetmoviestab = function(req, res) {
+    var page = req.query.page > 0 ? req.query.page : 1;
+    var perPage = req.query.counts>0?req.query.counts*1:20;
+    var sort = req.query.sort?req.query.sort:"newtime";
+    var tab = req.query.tab?req.query.tab:"all";
+    var query = {};
+    if(tab=="all"){
+        query = {status:'finished'};
+    } else {
+        query = {status:'finished',category: tab};
+    }
+    var sortquery = '';
+    if(sort=="hot") {
+        sortquery = '-count';
+    } else if (sort == 'nothot') {
+        sortquery = 'count';
+    } else if (sort == 'newtime') {
+        sortquery = '-createAt';
+    } else if (sort == 'oldtime') {
+        sortquery = 'createAt';
+    }
+    async.parallel({
+        movies: function(callback) {
+            Movie.find(query)
+                .sort(sortquery)
+                .limit(perPage)
+                .skip(perPage * (page-1))
+                .exec(function(err, movies) {
+                    if(err) {
+                        callback(err, null);
+                    }
+                    callback(null,movies);
+                })
+        },
+        tabs: function(callback) {
+            Category.find()
+                .exec(function(err, tabs) {
+                    if(err) {
+                        callback(err,null);
+                    }
+                    callback(null,tabs);
+                })
+        }
+    },function(err, results) {
+        if(err) {
+            return res.json({
+                error: err
+            });
+        }
+        res.json({
+            movies: results.movies,
+            tabs: results.tabs
+        })
+    })
+}
+exports.apigetsearch = function(req, res) {
+    var page = req.query.page > 0 ? req.query.page : 1;
+    var perPage = req.query.counts>0?req.query.counts*1:20;
+    var q = req.query.q.length>0? req.query.q: "";
+    var reg = new RegExp(q,"i");
+    Movie.find({originalname:reg})
+        .sort('-createAt')
+        .limit(perPage)
+        .skip(perPage * (page-1))
+        .exec(function(err, movies) {
+            if(err) {
+                res.json({
+                    error: err,
+                    movies: null
+                });
+            }
+            res.json({
+                movies: movies
+            })
+        })
+}
+exports.apigetm3u8 = function(req, res) {
+    var refer = req.headers.referer;
+    var agent = req.headers["user-agent"];
+    if(!refer || !agent) {
+        return res.status(404).send("错误页面");
+    }
+    var q = req.query.q;
+    var req = new RegExp(q,"i");
+    var m3u8 = [];
+    if(q.length>0) {
+        async.parallel({
+            setting: function(callback) {
+                Setting.find()
+                    .exec(function(err,setting) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        callback(null, setting[0]);
+                    })
+            },
+            movies: function(callback) {
+                Movie.find({originalname: req})
+                    .exec(function(err, movies) {
+                        if(err) {
+                            console.log(err);
+                        }
+                        callback(null,movies);
+                    })
+            },
+            token: function(callback) {
+                cache.getTokenByRedis(function(err, token) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    callback(null, token);
+                })
+            }
+        }, function(err, results) {
+            if(err) {
+                console.log(err);
+            }
+            results.movies.forEach((movie,index) => {
+                var them3u8 = results.setting.host+"/videos/"+movie._id+"/index.m3u8?token="+results.token;
+                m3u8.push(them3u8);
+            })
+            res.json({
+                m3u8: m3u8
+            })
+        })
+    }
 }
 function deleteall(path) {
     var files = [];

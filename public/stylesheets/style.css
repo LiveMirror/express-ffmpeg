@@ -512,6 +512,9 @@ a.badge:hover{
 .swiper-wrapper{
   height:38px;
 }
+.right {
+  float: right;
+}
 @media (min-width: 768px) {
   .col-md-4 {
   -ms-flex: 0 0 33.333333%;

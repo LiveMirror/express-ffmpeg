@@ -154,18 +154,57 @@ exports.getmovies = function(req, res) {
                 if(err) {
                     console.log(err);
                 }
-                Movie.find().count(function (err, count){
-                    Category.find()
-                        .exec(function(err, categories) {
-                            res.render("movies", {
-                                user: req.session.user,
-                                title: "全部电影库",
-                                movies: movies,
-                                categories: categories,
-                                page: page,
-                                pages: Math.ceil(count / perPage)
-                            })
+                async.parallel({
+                    all: function(callback) {
+                        Movie.find().count(function(err, count) {
+                            if(err) {
+                                console.log(err);
+                            }
+                            callback(null, count);
                         })
+                    },
+                    finished: function(callback) {
+                        Movie.find({status: 'finished'})
+                            .count(function(err, count) {
+                                if(err) {
+                                    console.log(err);
+                                }
+                                callback(null, count);
+                            })
+                    },
+                    waiting: function(callback) {
+                        Movie.find({status: 'waiting'})
+                            .count(function(err, count) {
+                                if(err) {
+                                    console.log(err);
+                                }
+                                callback(null,count);
+                            })
+                    },
+                    categories: function(callback) {
+                        Category.find()
+                            .exec(function(err, categories) {
+                                if(err) {
+                                    console.log(err);
+                                }
+                                callback(null, categories);
+                            })
+                    }
+                }, function(err,results) {
+                    if(err) {
+                        console.log(err);
+                    }
+                    res.render("movies", {
+                        user: req.session.user,
+                        title: "全部电影库",
+                        movies: movies,
+                        categories: results.categories,
+                        page: page,
+                        all: results.all,
+                        finished: results.finished,
+                        waiting: results.waiting,
+                        pages: Math.ceil(results.all / perPage)
+                    })
                 })
                 
             })

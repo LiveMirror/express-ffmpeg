@@ -69,6 +69,13 @@ app.use("/videos/:id/index.m3u8", openUsersystem, function (req, res, next) {
       if (err) {
         console.log(err);
       }
+      var antiurlarr = setting[0].antiurl;
+      if(antiurlarr.indexOf(req.headers.origin)!=-1){
+        res.header("Access-Control-Allow-Origin", '*'); 
+        res.header("Access-Control-Allow-Methods", "POST, GET"); 
+        res.header("Access-Control-Allow-Headers", "X-Requested-With"); 
+        res.header("Access-Control-Allow-Headers", "Content-Type"); 
+      }
       if(setting[0].antikey!=""){
         var token = req.query.token;
         jwt.verify(token, setting[0].antikey, function (err, decoded) {
@@ -104,6 +111,8 @@ app.use("/videos/:id/index.m3u8", openUsersystem, function (req, res, next) {
                     }
                   }
                   var newm3u8 = m3u8arr.join("");
+                  res.header('Content-Type','application/octet-stream');
+                  res.header('Content-Disposition', 'attachment; filename=index.m3u8');
                   res.send(newm3u8);
                 }
               } else {

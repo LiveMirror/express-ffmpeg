@@ -73,9 +73,12 @@ module.exports = {
     db: "dbname",
     dbuser: "dbuser",
     dbpassword: "dbpassword",
-    secret: "yoursecret"
+    secret: "yoursecret",
+    login: "/adminloginurl",
+    loginmsg: "404 Not Found"
 };
 ```
+**注意：**很多用户安装出错就在这里，比很早的版本多了三个设置项，secret是session需要的秘钥，login是后台登陆地址，loginmsg是后台未登录显示的内容，默认是404。
 
 2. 登陆后台之后请立刻在设置中进行设置。
 3. 上传视频即可上传视频。
@@ -85,6 +88,13 @@ module.exports = {
 7. 秒切功能，开启之后，无需进行转码的视频会直接切片。（后台可设置）
 
 #### 版本
+##### V5版本
+* 增加后台登陆地址修改功能，增加后台访问提示信息功能。
+* 增加视频总量和未完成、完成的统计功能。
+* 增加大量API，为APP做准备，APP已经出了原型，最近会放出demo安装包。
+* APP和新型超级CMS正在配套完善中。
+* express-ffmpeg进化成为跨平台多端产品。
+
 ##### V4.3版本
 * 增加批量切片头的功能，选择视频，设置时间轴，一键切片头，利用速度最快的参数，秒切片头。
 * 增加m3u8开放浏览功能，设置里边删除key，则m3u8开放浏览，可以分享到任何播放器进行播放，如果设置了key，则可以使用m3u8api调用，安全性更高。

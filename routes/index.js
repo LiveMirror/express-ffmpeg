@@ -4,6 +4,7 @@ var Cmscontroller = require("../controller/cms");
 var Portal = require('../models/portal');
 var Setting = require('../models/setting');
 var User = require('../models/user');
+var config = require('../config/auth');
 var multer = require('multer');
 const { body } = require('express-validator/check');
 var storage = multer.diskStorage({
@@ -48,12 +49,12 @@ var articleupload = multer({
   }
 });
 module.exports = function(app) {
-    app.get('/hlsserver', checkNotLogin, function(req, res, next) {
+    app.get(config.login, checkNotLogin, function(req, res, next) {
       res.render('hlsserver', {
         title: '云转码切片服务平台'
       });
     });
-    app.post("/hlsserver", checkNotLogin, function(req, res) {
+    app.post(config.login, checkNotLogin, function(req, res) {
       var user = req.body.user;
       var password = req.body.password;
       if(user == auth.user && password == auth.password) {
@@ -65,7 +66,7 @@ module.exports = function(app) {
     });
     app.get("/hlslogout", checkLogin, function(req, res) {
       req.session.user = null;
-      res.redirect("/hlsserver");
+      res.redirect(config.login);
     });
     function posttimeout (req, res, next) {
       req.setTimeout(10000, function() {
@@ -98,6 +99,12 @@ module.exports = function(app) {
     // cms end
     // api
     app.get("/api/m3u8/:id", checkApiOpen, Admincontroller.apim3u8);
+    app.get("/api/getindex",checkApiOpen, Cmscontroller.apigetindex);
+    app.get("/api/getmovies",checkApiOpen,Cmscontroller.apigetmovies);
+    app.get("/api/getplay",checkApiOpen, Cmscontroller.apigetplay);
+    app.get("/api/getmoviestab", checkApiOpen, Cmscontroller.apigetmoviestab);
+    app.get("/api/search", checkApiOpen, Cmscontroller.apigetsearch);
+    app.get("/api/getm3u8", checkApiOpen, Cmscontroller.apigetm3u8);
     // api end
     app.post("/upzimu", checkLogin, upload.single('zimu'), Admincontroller.postzimu);
     app.post("/upload", checkLogin, posttimeout, upload.single('file'), Admincontroller.postupload);
@@ -200,7 +207,7 @@ module.exports = function(app) {
 
     function checkLogin(req, res, next) {
       if( !req.session.user ) {
-        return res.redirect('/hlsserver');
+        return res.status(404).send(config.loginmsg);
       }
       next();
     }
