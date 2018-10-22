@@ -7,7 +7,7 @@ html.playbody
     meta(name="renderer",content="webkit")
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel="stylesheet", href='/stylesheets/DPlayer.min.css')
+    link(rel="stylesheet", href='https://cdn.jsdelivr.net/npm/p2p-dplayer@latest/dist/DPlayer.min.css')
   body.playbody
     if !phoneviewer||!waplock
       #player
@@ -56,8 +56,8 @@ html.playbody
             text-decoration: #{underline};
           }
       script(src="/javascripts/fixie.js")
-      script(src="/javascripts/hls.min.js")
-      script(src="/javascripts/DPlayer.min.js")
+      script(src="https://cdn.jsdelivr.net/npm/cdnbye@latest")
+      script(src="https://cdn.jsdelivr.net/npm/p2p-dplayer@latest")
       script(src="/javascripts/jquery.min.js")
       script(src="/layer/layer.js")
       .hidden!=player.tongji
@@ -140,6 +140,14 @@ html.playbody
                   pic: '#{theposter}',
                   thumbnails: '/videos/#{id}/thumbnails.jpg',
                   type: 'hls'
+              },
+              hlsjsConfig: {
+                  debug: false,
+                  // Other hlsjsConfig options provided by hls.js
+                  p2pConfig: {
+                      logLevel: false,
+                      // Other p2pConfig options provided by CDNBye
+                  }
               },
               subtitle: {
                   url: '/videos/#{id}/1.vtt',
@@ -229,7 +237,6 @@ html.playbody
                   max-width: 200px;
                   max-height: 50px;
               }
-      script(src="//cdn.btjson.com/p2pjs/1.1/p2p.js")
       if player.p2p != 'on'
         style.
           #p2pserver{
