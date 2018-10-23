@@ -42,10 +42,10 @@
 四、一键获取分享链接，防盗链设置，只允许指定域名 ifream 调用，token 防盗链等。
 五、自带完备的 CMS 系统。
 
-官网地址：[https://ffmpeg.moejj.com](https://ffmpeg.moejj.com)
-演示站：[https://www.moejj.com](https://www.moejj.com)
-云转码专用CMS：[https://cms.moejj.com](https://cms.moejj.com)
-目前码云的安装教程是最正确的，安装请参照码云的安装教程。
+* 官网地址：[https://ffmpeg.moejj.com](https://ffmpeg.moejj.com)
+* 演示站：[https://www.moejj.com](https://www.moejj.com)
+* 云转码专用CMS：[https://cms.moejj.com](https://cms.moejj.com)
+* 目前码云的安装教程是最正确的，安装请参照码云的安装教程。
 
 本开源项目采用 nodejs、expressjs、mongodb 开发。
 使用前请安装 ffmpeg。
