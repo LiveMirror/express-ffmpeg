@@ -4,6 +4,19 @@
 
 利用 react native 开发的跨平台原生 APP 代码正在紧锣密鼓的准备中，大概 15 天会第一个基础版本。大家敬请期待。
 
+### 最新多端视频套件正式发布
+#### 套件图示：
+![视频多端套件](https://images.gitee.com/uploads/images/2018/1023/175945_1be1e689_145248.jpeg "未标题-1.jpg")
+涉及源码：
+express-ffmpeg: [https://gitee.com/quazero/express-ffmpeg](https://gitee.com/quazero/express-ffmpeg)
+cdn-manager: [https://gitee.com/quazero/cdn-manager](https://gitee.com/quazero/cdn-manager)
+演示链接：
+Topercms: [https://cms.moejj.com](https://cms.moejj.com)
+cdn处理演示：
+原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280*720
+cdn处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg  400*300jpg质量90%
+APP明天上线。
+
 ### 2018 年 9 月 4 日大更新
 
 这次完全更改了项目了定位，云转码不再是简单的云转码系统，而是 CMS 系统+云转码系统一体化，自带整个完备的并且对移动端友好的，而且非常利于 SEO 优化的自适应 CMS 系统，根据后台的分类系统和门户 CMS 管理系统，直接在首页达成完备的在线视频播放系统，适用于在线教育、企业内部培训视频、在线视频自媒体门户等多种运用方向。这次更新完善了视频的分类系统，完善了视频的搜索功能。CMS 现在集成有视频发布，文章发布和图集发布三个功能。
