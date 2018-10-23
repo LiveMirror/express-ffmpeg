@@ -7,15 +7,15 @@
 ### 最新多端视频套件正式发布
 #### 套件图示：
 ![视频多端套件](https://images.gitee.com/uploads/images/2018/1023/175945_1be1e689_145248.jpeg "未标题-1.jpg")
-涉及源码：
-express-ffmpeg: [https://gitee.com/quazero/express-ffmpeg](https://gitee.com/quazero/express-ffmpeg)
-cdn-manager: [https://gitee.com/quazero/cdn-manager](https://gitee.com/quazero/cdn-manager)
-演示链接：
-Topercms: [https://cms.moejj.com](https://cms.moejj.com)
-cdn处理演示：
-原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280*720
-cdn处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg  400*300jpg质量90%
-APP明天上线。
+##### 涉及源码：
+* express-ffmpeg: [https://gitee.com/quazero/express-ffmpeg](https://gitee.com/quazero/express-ffmpeg)
+* cdn-manager: [https://gitee.com/quazero/cdn-manager](https://gitee.com/quazero/cdn-manager)
+##### 演示链接：
+* Topercms: [https://cms.moejj.com](https://cms.moejj.com)
+* cdn处理演示：
+* 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280*720
+* cdn处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg  400*300jpg质量90%
+* APP明天上线。
 
 ### 2018 年 9 月 4 日大更新
 
@@ -44,6 +44,7 @@ APP明天上线。
 
 官网地址：[https://ffmpeg.moejj.com](https://ffmpeg.moejj.com)
 演示站：[https://www.moejj.com](https://www.moejj.com)
+云转码专用CMS：[https://cms.moejj.com](https://cms.moejj.com)
 目前码云的安装教程是最正确的，安装请参照码云的安装教程。
 
 本开源项目采用 nodejs、expressjs、mongodb 开发。
