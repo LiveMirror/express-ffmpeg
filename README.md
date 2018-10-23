@@ -16,6 +16,9 @@
 * 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280*720
 * cdn处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg  400*300jpg质量90%
 * APP明天上线。
+##### 说明
+* 这套CMS可能是国内最具实验性的CMS，完全利用云转码的API进行调用，并且使用服务端渲染技术，页面自动缓存和预加载技术，利用vuejs+nuxtjs+elementui+vuetify进行编写，类似youtube和腾讯视频、花瓣的技术。
+* app采用react-native编写，多端共用一套源码，构建出来的APP具有跟原生代码编写的APP同样的效能和体验，让使用者体验保持在60帧的完美原生APP体验。
 
 ### 2018 年 9 月 4 日大更新
 
