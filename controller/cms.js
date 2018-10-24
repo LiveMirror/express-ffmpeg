@@ -591,6 +591,14 @@ exports.apigetplay = function(req, res) {
           }
           callback(null, movie)
         })
+      },
+      token: function(callback) {
+        cache.getTokenByRedis(function(err, token) {
+          if (err) {
+            callback(err, null)
+          }
+          callback(null, token)
+        })
       }
     },
     function(err, results) {
@@ -603,7 +611,8 @@ exports.apigetplay = function(req, res) {
       res.json({
         movies: results.movies,
         m3u8: m3u8,
-        movie: results.movie
+        movie: results.movie,
+        token: results.token
       })
     }
   )
