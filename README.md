@@ -22,7 +22,7 @@
 - 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280\*720
 - cdn 处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg 400\*300jpg 质量 90%
 - APP 正式上线，安卓测试版本下载地址：https://cms.moejj.com/expressffmpeg.apk
-  苹果需要翻墙才能安装，暂时没有构建。
+  苹果版本暂时没有构建。
 
 ##### 说明
 
