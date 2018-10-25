@@ -5,20 +5,29 @@
 利用 react native 开发的跨平台原生 APP 代码正在紧锣密鼓的准备中，大概 15 天会第一个基础版本。大家敬请期待。
 
 ### 最新多端视频套件正式发布
+
 #### 套件图示：
+
 ![视频多端套件](https://images.gitee.com/uploads/images/2018/1023/175945_1be1e689_145248.jpeg "未标题-1.jpg")
+
 ##### 涉及源码：
-* express-ffmpeg: [https://gitee.com/quazero/express-ffmpeg](https://gitee.com/quazero/express-ffmpeg)
-* cdn-manager: [https://gitee.com/quazero/cdn-manager](https://gitee.com/quazero/cdn-manager)
+
+- express-ffmpeg: [https://gitee.com/quazero/express-ffmpeg](https://gitee.com/quazero/express-ffmpeg)
+- cdn-manager: [https://gitee.com/quazero/cdn-manager](https://gitee.com/quazero/cdn-manager)
+
 ##### 演示链接：
-* Topercms: [https://cms.moejj.com](https://cms.moejj.com)
-* cdn处理演示：
-* 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280*720
-* cdn处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg  400*300jpg质量90%
-* APP明天上线。
+
+- Topercms: [https://cms.moejj.com](https://cms.moejj.com)
+- cdn 处理演示：
+- 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280\*720
+- cdn 处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg 400\*300jpg 质量 90%
+- APP 正式上线，安卓测试版本下载地址：https://cms.moejj.com/expressffmpeg.apk
+  苹果需要翻墙才能安装，暂时没有构建。
+
 ##### 说明
-* 这套CMS可能是国内最具实验性的CMS，完全利用云转码的API进行调用，并且使用服务端渲染技术，页面自动缓存和预加载技术，利用vuejs+nuxtjs+elementui+vuetify进行编写，类似youtube和腾讯视频、花瓣的技术。
-* app采用react-native编写，多端共用一套源码，构建出来的APP具有跟原生代码编写的APP同样的效能和体验，让使用者体验保持在60帧的完美原生APP体验。
+
+- 这套 CMS 可能是国内最具实验性的 CMS，完全利用云转码的 API 进行调用，并且使用服务端渲染技术，页面自动缓存和预加载技术，利用 vuejs+nuxtjs+elementui+vuetify 进行编写，类似 youtube 和腾讯视频、花瓣的技术。
+- app 采用 react-native 编写，多端共用一套源码，构建出来的 APP 具有跟原生代码编写的 APP 同样的效能和体验，让使用者体验保持在 60 帧的完美原生 APP 体验。
 
 ### 2018 年 9 月 4 日大更新
 
@@ -45,10 +54,10 @@
 四、一键获取分享链接，防盗链设置，只允许指定域名 ifream 调用，token 防盗链等。
 五、自带完备的 CMS 系统。
 
-* 官网地址：[https://ffmpeg.moejj.com](https://ffmpeg.moejj.com)
-* 演示站：[https://www.moejj.com](https://www.moejj.com)
-* 云转码专用CMS：[https://cms.moejj.com](https://cms.moejj.com)
-* 目前码云的安装教程是最正确的，安装请参照码云的安装教程。
+- 官网地址：[https://ffmpeg.moejj.com](https://ffmpeg.moejj.com)
+- 演示站：[https://www.moejj.com](https://www.moejj.com)
+- 云转码专用 CMS：[https://cms.moejj.com](https://cms.moejj.com)
+- 目前码云的安装教程是最正确的，安装请参照码云的安装教程。
 
 本开源项目采用 nodejs、expressjs、mongodb 开发。
 使用前请安装 ffmpeg。
