@@ -128,15 +128,22 @@ app.use("/videos/:id/index.m3u8", openUsersystem, function(req, res, next) {
               var index = 0
               for (let i = 0; i < m3u8arr.length; i++) {
                 if (i > 0) {
-                  if (index < domainslength) {
-                    m3u8arr[i] =
-                      domains[index] + "/videos/" + id + "/index" + m3u8arr[i]
-                    index++
-                  } else {
-                    index = 1
-                    m3u8arr[i] =
-                      domains[0] + "/videos/" + id + "/index" + m3u8arr[i]
-                  }
+                  var domainindex = parseInt(domainslength * Math.random())
+                  m3u8arr[i] =
+                    domains[domainindex] +
+                    "/videos/" +
+                    id +
+                    "/index" +
+                    m3u8arr[i]
+                  // if (index < domainslength) {
+                  //   m3u8arr[i] =
+                  //     domains[index] + "/videos/" + id + "/index" + m3u8arr[i]
+                  //   index++
+                  // } else {
+                  //   index = 1
+                  //   m3u8arr[i] =
+                  //     domains[0] + "/videos/" + id + "/index" + m3u8arr[i]
+                  // }
                 }
               }
               var newm3u8 = m3u8arr.join("")
