@@ -37,7 +37,7 @@ exports.transcode = function() {
             movie.save(function(err) {
               console.log(err)
             })
-            return this.transcode()
+            return exports.transcode()
           })
         }
         Setting.find().exec(function(err, setting) {
