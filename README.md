@@ -21,7 +21,7 @@
 - cdn 处理演示：
 - 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280\*720
 - cdn 处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg 400\*300jpg 质量 90%
-- APP 正式上线，安卓测试版本下载地址：https://www.moejj.com/expressffmpeg.apk
+- APP 正式上线，安卓测试版本下载地址：https://share.weiyun.com/5IDKG3V
 - app 演示视频：https://www.moejj.com/movie/5bd48a7e46321d4473b857e3
 - 苹果版本暂时没有构建。
 
