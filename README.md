@@ -17,18 +17,17 @@
 
 ##### 演示链接：
 
-- Topercms: [https://cms.moejj.com](https://cms.moejj.com)
+- 高级cms: [高级CMS应用](https://bai.moe)
 - cdn 处理演示：
 - 原图片：https://www.moejj.com/videos/5bc721ef87af60065e31735e/1.jpg 1280\*720
 - cdn 处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg 400\*300jpg 质量 90%
 - APP 正式上线，安卓测试版本下载地址：https://share.weiyun.com/5IDKG3V
 - app 演示视频：https://www.moejj.com/movie/5bd48a7e46321d4473b857e3
-- 苹果版本暂时没有构建。
 
 ##### 说明
 
-- 这套 CMS 可能是国内最具实验性的 CMS，完全利用云转码的 API 进行调用，并且使用服务端渲染技术，页面自动缓存和预加载技术，利用 vuejs+nuxtjs+elementui+vuetify 进行编写，类似 youtube 和腾讯视频、花瓣的技术。
-- app 采用 react-native 编写，多端共用一套源码，构建出来的 APP 具有跟原生代码编写的 APP 同样的效能和体验，让使用者体验保持在 60 帧的完美原生 APP 体验。
+- 云转码 express-ffmpeg 配合 高级版 CMS 可以做成非常高级的功能，比如这个正在运营的百萌电影预告片网，利用标签整合，可以把 SEO 效果做到最大化。
+- app 采用 react-native 编写，多端共用一套源码，构建出来的 APP 本身就是原生APP，并非H5app完全不是一个档次，稳定60 帧的完美原生 APP 体验。
 
 ### 2018 年 9 月 4 日大更新
 
