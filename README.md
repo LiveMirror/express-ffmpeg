@@ -12,6 +12,9 @@
 ![多码率版本](https://images.gitee.com/uploads/images/2019/0105/133235_a12c7730_145248.png "0A1D7F1D-D33F-45C6-94E3-344065B6FF20.png")
 ![跑马灯展示](https://images.gitee.com/uploads/images/2019/0105/133251_55aeb185_145248.png "F201CE69-4F63-43FD-AB8B-13264D303E9D.png")
 
+### 实测多码率转码mp4大小对照
+测试用视频4000mb，转码以后，240p为175mb，360p为220mb，480p为265mb，720p为450mb，1080p为820mb。仅供参考，跟视频相关性较大。
+
 ### 最新多端视频套件正式发布
 
 #### 套件图示：
