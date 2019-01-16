@@ -48,6 +48,7 @@
 - cdn 处理图片：https://cdn.moejj.com/poster/videos/5bc721ef87af60065e31735e/1.jpg 400\*300jpg 质量 90%
 - APP 正式上线，安卓测试版本下载地址：https://share.weiyun.com/5IDKG3V
 - app 演示视频：https://www.moejj.com/movie/5bd48a7e46321d4473b857e3
+- windows傻瓜安装程序：https://www.iqi360.com/topic/5c3f10c4073ecf353edefefc
 
 ##### 说明
 
